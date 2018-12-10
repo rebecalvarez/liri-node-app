@@ -12,6 +12,9 @@ var reference = [];
 var theSong='';
 var theMovie='';
 var theBand='';
+var filename = 'log.txt';
+var fullCommand =[];
+
 
 //Getting reference (user choice) to accept several words
 for (var i = 3; i < arg.length; i++) {
@@ -20,6 +23,24 @@ for (var i = 3; i < arg.length; i++) {
 
 var referenceBand = reference.join("");
 // End of Reference
+
+//Loggin full Command
+fullCommand.push(command);
+if(reference.length != 0){
+    fullCommand.push(referenceBand);
+}
+ 
+
+
+//Logging function 
+function logging(value){
+    fs.appendFile(filename,','+ value, function(err) { 
+        if (err) {
+            return console.log("oh no error")
+        }
+    })
+}
+logging(fullCommand);
 
 // Commands:
 //concert-this  --- spotify-this-song   ----  movie-this --- do-what-it-says
