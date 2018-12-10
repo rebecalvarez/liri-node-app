@@ -9,11 +9,15 @@ var spotify = new Spotify(keys.spotify);
 var command = process.argv[2];
 var arg = process.argv;
 var reference = [];
+var theSong='';
+var theMovie='';
+var theBand='';
 
 //Getting reference (user choice) to accept several words
 for (var i = 3; i < arg.length; i++) {
     reference.push(arg[i])
 }
+
 var referenceBand = reference.join("");
 // End of Reference
 
@@ -21,19 +25,21 @@ var referenceBand = reference.join("");
 //concert-this  --- spotify-this-song   ----  movie-this --- do-what-it-says
 
 if (command === 'concert-this') {
-    concert();
+    concert(referenceBand);
 } else if (command === 'spotify-this-song') {
-    spotifySong();
+    spotifySong(reference);
 } else if (command === 'movie-this') {
-    movie();
+    movie(reference);
 } else if (command === 'do-what-it-says') {
-    dothat();
+    doThat();
 }
 
-function concert() {
+function concert(referenceBand) {
     var bandUrl = "https://rest.bandsintown.com/artists/" + referenceBand + "/events?app_id=codingbootcamp";
     axios.get(bandUrl).then(
         function (response) {
+            console.log("  ");
+            console.log("********GETTING***BAND/ARTIST***INFO: "+referenceBand+"  **************");
             for (var i = 0; i < response.data.length; i++) {
 
                 var datetime = response.data[i].datetime; //Saves datetime response into a variable
@@ -47,7 +53,9 @@ function concert() {
                     "\nDate of the Event: " + moment(dateArr[0], "YYYY-DD-MM").format('DD/MM/YYYY'); //dateArr[0] should be the date separated from the time
                 //and it changes to a new format
                 console.log(concertResults);
-            }
+            }    console.log("  ");
+                 console.log("******************************************************************  ");
+                 console.log("  ");
         })
         .catch(function (error) {
             console.log('This is the error: ' + error);
@@ -56,13 +64,16 @@ function concert() {
 
 
 
-function spotifySong() {
+function spotifySong(reference) {
     if(reference.length === 0){
         reference = "The Sign";
     }
     spotify
     .search({ type: 'track', query: reference })
     .then(function(response) {
+        console.log("  ");
+        console.log("******SPOTIFIYING****"+reference+"***********");
+        console.log("  ");
         for (var i = 0; i < 5; i++) {
             var spotifyResults = 
                 "--------------------------------------------------------------------" +
@@ -72,7 +83,7 @@ function spotifySong() {
                     "\nPreview Link: " + response.tracks.items[i].preview_url;
                     
             console.log(spotifyResults);
-            
+
             // Artist(s)
 
             // The song's name
@@ -82,6 +93,9 @@ function spotifySong() {
             // The album that the song is from
 
         }
+        console.log("  ");
+        console.log("********************************************************************  ");
+        console.log("  ");
     })
     .catch(function(err) {
         console.log(err);
@@ -92,7 +106,7 @@ function spotifySong() {
 }
 
 
-function movie() {
+function movie(reference) {
     if(reference.length === 0){
         reference = "mr nobody";
     }
@@ -101,9 +115,9 @@ function movie() {
             var rotten = response.data.Ratings[1].Value;
             // console.log("This is the Rotten value : "+rotten)
             if (rotten === "undefined") { rotten = "Not available" }
-
-
-            console.log("***********YOUR***MOVIE***INFORMATION**********");
+            console.log("  ");
+            console.log("******MOVIE**INFORMATION**FOR**"+response.data.Title+"******");
+            console.log("  ");
             console.log("* Title: " + response.data.Title);
             console.log("* Year: " + response.data.Year);
             console.log("* IMDB Rating: " + response.data.Rated);
@@ -112,7 +126,9 @@ function movie() {
             console.log("* Language: " + response.data.Language);
             console.log("* Plot: " + response.data.Plot);
             console.log("* Actors: " + response.data.Actors);
-            console.log("***********************************************");
+            console.log("  ");
+            console.log("**************************************************************");
+            console.log("  ");
 
 
 
@@ -130,6 +146,35 @@ function movie() {
         });
 }
 
-function dothat() {
+function doThat() {
+    fs.readFile("random.txt", "utf8", function(error, data) {
+        if (error) {
+            return console.log(error);
+        }
+        var dataArr = data.split(',');
+        console.log('')
+        console.log('-------------------MENU--OF--CONTENT-------------------')
+        console.log('')
+        for (var i = 0; i < dataArr.length; i++) {
+        if (dataArr[i] === 'spotify-this-song'){ 
+            theSong= dataArr[++i];
+            console.log('--------SPOTIFIYING-------'+theSong+'---------')
+            spotifySong(theSong);
+
+        }else if (dataArr[i] === 'movie-this'){  
+            theMovie= dataArr[++i];
+            console.log('--------WHATCH-THIS-MOVIE-------'+theMovie+'---------')
+                movie(theMovie);
+        }else if (dataArr[i] === 'concert-this'){
+            theBand= dataArr[++i];
+            console.log('--------CHECK-OUT-THIS-BAND-------'+theBand+'---------')
+            concert(theBand);
+        } else { console.log("Sorry, This command is not accepted");
+            
+        }
+            
+    }
+    })
 
 }
+
