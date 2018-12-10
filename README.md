@@ -44,7 +44,7 @@ Retrieves up to your Band's events:
 
 Retrieves song information for a track:
 
-`node liri.js spotify-this-song "I wanted that way"`
+`node liri.js spotify-this-song "I Want it That Way"`
 
 ### Get Movie Info
 
