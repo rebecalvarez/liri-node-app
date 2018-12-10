@@ -133,23 +133,57 @@ function movie(reference) {
     }
     axios.get('http://www.omdbapi.com/?t=' + reference + '&plot=short&apikey=trilogy').then(
         function (response) {
-            var rotten = response.data.Ratings[1].Value;
+             
             // console.log("This is the Rotten value : "+rotten)
             if (rotten === "undefined") { rotten = "Not available" }
             console.log("  ");
-            console.log("******MOVIE**INFORMATION**FOR**"+response.data.Title+"******");
+            console.log("******MOVIE**INFORMATION**FOR*****"+response.data.Title+"*************");
             console.log("  ");
-            console.log("* Title: " + response.data.Title);
-            console.log("* Year: " + response.data.Year);
-            console.log("* IMDB Rating: " + response.data.Rated);
-            console.log("* Rotten Tomatoes Rating: " + rotten);
-            console.log("* Country Produced: " + response.data.Country);
-            console.log("* Language: " + response.data.Language);
-            console.log("* Plot: " + response.data.Plot);
-            console.log("* Actors: " + response.data.Actors);
-            console.log("  ");
-            console.log("**************************************************************");
-            console.log("  ");
+
+            var rotten = response.data.Ratings[1].Value;
+            var movieResults = 
+                "\n* Title: " + response.data.Title + 
+                "\n* Year: " + response.data.Year +
+                "\n* IMDB Rating: " + response.data.Rated +
+                "\n* Rotten Tomatoes Rating: " + rotten +
+                "\n* Country Produced: " + response.data.Country +
+                "\n* Language: " + response.data.Language +
+                "\n* Plot: " + response.data.Plot +
+                "\n* Actors: " + response.data.Actors +
+                "\n " +
+                "\n************************************************************** "+
+                "\n ";
+        console.log(movieResults);
+
+            // for (var i = 0; i < 1; i++) {
+            //     var rotten = response.data[i].Ratings[1].Value;
+            //     var movieResults = 
+            //         "--------------------------------------------------------------------" +
+            //             "\n* Title: " + response.data[i].Title + 
+            //             "\n* Year: " + response.data[i].Year +
+            //             "\n* IMDB Rating: " + response.data[i].Rated +
+            //             "\n* Rotten Tomatoes Rating: " + rotten +
+            //             "\n* Country Produced: " + response.data[i].Country +
+            //             "\n* Language: " + response.data[i].Language +
+            //             "\n* Plot: " + response.data[i].Plot +
+            //             "\n* Actors: " + response.data[i].Actors +
+            //             "\n " +
+            //             "\n************************************************************** "+
+            //             "\n ";
+            //     console.log(movieResults);
+            // }
+
+            // console.log("* Title: " + response.data[i].Title);
+            // console.log("* Year: " + response.data[i].Year);
+            // console.log("* IMDB Rating: " + response.data[i].Rated);
+            // console.log("* Rotten Tomatoes Rating: " + rotten);
+            // console.log("* Country Produced: " + response.data[i].Country);
+            // console.log("* Language: " + response.data[i].Language);
+            // console.log("* Plot: " + response.data[i].Plot);
+            // console.log("* Actors: " + response.data[i].Actors);
+            // console.log("  ");
+            // console.log("**************************************************************");
+            // console.log("  ");
 
 
 
