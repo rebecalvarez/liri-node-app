@@ -32,7 +32,7 @@ lists dependent node packages, but for your convenvice, these are the ones to in
 
 ## Get Started
 
-Here's a quick rundom of the commands you can use in LIRI.
+Here's a quick rundowm of the commands you can use in LIRI.
 
 ### Get your Band Events Information
 
