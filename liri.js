@@ -14,7 +14,7 @@ var reference = [];
 for (var i = 3; i< arg.length ; i++){
  reference.push(arg[i])    
 }
-reference.join(' ');
+var referenceBand = reference.join("");
 // End of Reference
 
 // Commands:
@@ -31,15 +31,37 @@ if (command === 'concert-this' ){
 }
 
 function concert(){
+   var bandUrl = "https://rest.bandsintown.com/artists/" + referenceBand + "/events?app_id=codingbootcamp";
+    axios.get(bandUrl).then(
+        function(response) {    
+            for (var i = 0; i < response.data.length; i++) {
+    
+                var datetime = response.data[i].datetime; //Saves datetime response into a variable
+               
+                var dateArr = datetime.split('T'); //Splits the date and time in the response
+                
+                var concertResults = 
+                    "--------------------------------------------------------------------" +
+                        "\nVenue Name: " + response.data[i].venue.name + 
+                        "\nVenue Location: " + response.data[i].venue.city +
+                        "\nDate of the Event: " + moment(dateArr[0], "YYYY-DD-MM").format('DD/MM/YYYY'); //dateArr[0] should be the date separated from the time
+                                                                                                        //and it changes to a new format
+                console.log(concertResults);
+            }
+        })
+        .catch(function(error) {
+            console.log('This is the error: '+error);
+        });
+    }
+    
 
-}
 
 function spotify(){
 
 }
+
 function movie(){
    
-// var movie = process.argv[3]
 axios.get('http://www.omdbapi.com/?t='+reference+'&plot=short&apikey=trilogy').then(
     function(response){
         var rotten = response.data.Ratings[1].Value;
@@ -68,6 +90,8 @@ axios.get('http://www.omdbapi.com/?t='+reference+'&plot=short&apikey=trilogy').t
         // * Language of the movie.
         // * Plot of the movie.
         // * Actors in the movie.
-    }
-)
+    })
+    .catch(function(error) {
+        console.log('This is the error: '+error);
+    });
 }
