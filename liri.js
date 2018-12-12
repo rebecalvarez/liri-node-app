@@ -133,14 +133,14 @@ function movie(reference) {
     }
     axios.get('http://www.omdbapi.com/?t=' + reference + '&plot=short&apikey=trilogy').then(
         function (response) {
-             
+            var rotten = response.data.Ratings[1]
             // console.log("This is the Rotten value : "+rotten)
-            if (rotten === "undefined") { rotten = "Not available" }
+            if (rotten === undefined) { rotten = "Not available" } 
+            else{ rotten = response.data.Ratings[1].Value;}
             console.log("  ");
             console.log("******MOVIE**INFORMATION**FOR*****"+response.data.Title+"*************");
             console.log("  ");
 
-            var rotten = response.data.Ratings[1].Value;
             var movieResults = 
                 "\n* Title: " + response.data.Title + 
                 "\n* Year: " + response.data.Year +
