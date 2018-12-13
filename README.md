@@ -13,23 +13,23 @@ The [package.json](https://github.com/rebecalvarez/liri-node-app/blob/master/pac
 lists dependent node packages, but for your convenvice, these are the ones to install.
 
 
-### Spotify
+*### Spotify
 
 `npm install Node-Spotify-API`
 
-### Axios
+*### Axios
 
 `npm install axios`
 
-### FS
+*### FS
 
 `npm install fs`
 
-### Moment
+*### Moment
 
 `npm install moment`
 
-### DotEnv
+*### DotEnv
 
 `npm install dotenv`
 
