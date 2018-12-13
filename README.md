@@ -4,6 +4,9 @@ LIRI is a Language Interpretation and Recognition Interface.
 Use LIRI to get your band events information, find out about a song,
 or a movie, or just choose a random action from your own random file.
 
+## Video Explanation
+Check out the code explanation on this [YouTube video](https://github.com/rebecalvarez/liri-node-app/blob/master/package.json)
+
 ## Installs
 
 The [package.json](https://github.com/rebecalvarez/liri-node-app/blob/master/package.json)
