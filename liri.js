@@ -1,6 +1,5 @@
 require("dotenv").config();
 var fs = require("fs");
-var request = require("request");
 var Spotify = require('node-spotify-api');
 var axios = require('axios')
 var moment = require('moment');
@@ -55,6 +54,7 @@ if (command === 'concert-this') {
     doThat();
 }
 
+//concert-this  Function
 function concert(referenceBand) {
     var bandUrl = "https://rest.bandsintown.com/artists/" + referenceBand + "/events?app_id=codingbootcamp";
     axios.get(bandUrl).then(
@@ -83,7 +83,7 @@ function concert(referenceBand) {
         });
 }
 
-
+//spotify-this-song   Function
 
 function spotifySong(reference) {
     if(reference.length === 0){
@@ -105,13 +105,13 @@ function spotifySong(reference) {
                     
             console.log(spotifyResults);
 
-            // Artist(s)
+            //-  Artist(s)
 
-            // The song's name
+            //-  The song's name
             
-            // A preview link of the song from Spotify
+            //-  A preview link of the song from Spotify
             
-            // The album that the song is from
+            //-  The album that the song is from
 
         }
         console.log("  ");
@@ -126,6 +126,7 @@ function spotifySong(reference) {
 
 }
 
+ //movie-this  Function
 
 function movie(reference) {
     if(reference.length === 0){
@@ -155,51 +156,13 @@ function movie(reference) {
                 "\n ";
         console.log(movieResults);
 
-            // for (var i = 0; i < 1; i++) {
-            //     var rotten = response.data[i].Ratings[1].Value;
-            //     var movieResults = 
-            //         "--------------------------------------------------------------------" +
-            //             "\n* Title: " + response.data[i].Title + 
-            //             "\n* Year: " + response.data[i].Year +
-            //             "\n* IMDB Rating: " + response.data[i].Rated +
-            //             "\n* Rotten Tomatoes Rating: " + rotten +
-            //             "\n* Country Produced: " + response.data[i].Country +
-            //             "\n* Language: " + response.data[i].Language +
-            //             "\n* Plot: " + response.data[i].Plot +
-            //             "\n* Actors: " + response.data[i].Actors +
-            //             "\n " +
-            //             "\n************************************************************** "+
-            //             "\n ";
-            //     console.log(movieResults);
-            // }
-
-            // console.log("* Title: " + response.data[i].Title);
-            // console.log("* Year: " + response.data[i].Year);
-            // console.log("* IMDB Rating: " + response.data[i].Rated);
-            // console.log("* Rotten Tomatoes Rating: " + rotten);
-            // console.log("* Country Produced: " + response.data[i].Country);
-            // console.log("* Language: " + response.data[i].Language);
-            // console.log("* Plot: " + response.data[i].Plot);
-            // console.log("* Actors: " + response.data[i].Actors);
-            // console.log("  ");
-            // console.log("**************************************************************");
-            // console.log("  ");
-
-
-
-            // * Title of the movie.
-            // * Year the movie came out.
-            // * IMDB Rating of the movie.
-            // * Rotten Tomatoes Rating of the movie.
-            // * Country where the movie was produced.
-            // * Language of the movie.
-            // * Plot of the movie.
-            // * Actors in the movie.
         })
         .catch(function (error) {
             console.log('This is the error: ' + error);
         });
 }
+
+// do-what-it-says function
 
 function doThat() {
     fs.readFile("random.txt", "utf8", function(error, data) {
