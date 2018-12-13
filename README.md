@@ -5,7 +5,7 @@ Use LIRI to get your band events information, find out about a song,
 or a movie, or just choose a random action from your own random file.
 
 ## Video Explanation
-Check out the code explanation on this [YouTube video](https://github.com/rebecalvarez/liri-node-app/blob/master/package.json)
+Check out the code explanation on this [YouTube video](https://youtu.be/9TxUmm2hZ4g)
 
 ## Installs
 
