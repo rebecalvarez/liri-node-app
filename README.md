@@ -32,7 +32,7 @@ lists dependent node packages, but for your convenvice, these are the ones to in
 
 ## Get Started
 
-Here's a quick rundowm of the commands you can use in LIRI.
+Here's a quick rundown of the commands you can use in LIRI.
 
 ### Get your Band Events Information
 
@@ -55,6 +55,6 @@ Retrieves movie information for a movie:
 ### Get Random Info
 
 Gets random text inside a file and does what it says:
-the document random.txt has serveral different commands, when it displays, it has a menu of all the commands.
+the document random.txt has serveral different commands, when it displays, it has a menu of all the commands and displays the answers to  those commands.
 
 `node liri.js do-what-it-says`
